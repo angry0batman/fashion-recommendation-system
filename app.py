@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from PIL import Image
-import tensorflow 
+import tensorflow as tf
 import pickle
 import numpy as np
 from tensorflow.keras.preprocessing import image
@@ -18,7 +18,7 @@ filenames = pickle.load(open('filenames.pkl', 'rb'))
 model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 model.trainable = False
 
-model = tensorflow.keras.Sequential([
+model = tf.keras.Sequential([
     model,
     GlobalMaxPooling2D()
 ])
@@ -64,8 +64,14 @@ if uploaded_file is not None:
         columns = [col1, col2, col3, col4, col5]
         
         for col, index in zip(columns, indices[0][:5]):
+            image_path = filenames[index]
             try:
-                col.image(filenames[index])
+                # Debugging: Print the image path
+                print(f"Trying to load image: {image_path}")
+                if os.path.exists(image_path):
+                    col.image(image_path)
+                else:
+                    col.text(f"File does not exist: {image_path}")
             except Exception as e:
                 col.text(f"Error loading image: {e}")
     else:
