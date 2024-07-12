@@ -10,6 +10,8 @@ def get_similar_images(sample_image_path, feature_list_path, filenames_path, num
   """
   This function finds similar images to a given sample image using a pre-trained ResNet50 model
   and a k-Nearest Neighbors (KNN) search.
+# a=2
+# b=3
 
   Args:
       sample_image_path (str): Path to the sample image.
