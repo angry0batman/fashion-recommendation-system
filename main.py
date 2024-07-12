@@ -1,7 +1,7 @@
 import pickle
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.applications import ResNet50, preprocess_input
+from keras.applications.resnet50 import ResNet50, preprocess_input
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.layers import GlobalMaxPooling2D
 from sklearn.neighbors import NearestNeighbors
